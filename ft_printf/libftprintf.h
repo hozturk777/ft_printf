@@ -14,7 +14,8 @@
 # define LIBFTPRINTF_H
 
 int ft_printf(const char *, ...);
-int	ft_putstr(char c, int size);
 int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int ft_putnbr(long  n);
 
 #endif

@@ -14,12 +14,14 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void ft_identifier(const char *format, va_list args, int *value)
+void ft_identifier(const char *format, va_list args, int *temp)
 {
-	if(*format == 'd')
-		*value += ft_putchar(va_arg(args, int) + '0');
+	if(*format == 'd' || *format == 'i')
+		*temp += ft_putnbr(va_arg(args, int));
 	else if (*format == 'c')
-		*value += ft_putchar(va_arg(args, int));
+		*temp += ft_putchar(va_arg(args, int));
+	else if (*format == 's')
+		*temp += ft_putstr(va_arg(args, char *));
 }
 
 int	ft_printf(const char *format, ...)
@@ -30,20 +32,18 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	
 	value = 0;
-	temp = 0;
 	while (*format)
 	{
+		temp = 0;
 		if (*format == '%')
-			ft_identifier((++format), args, &value);
+			ft_identifier((++format), args, &temp);
 		else
-		{
-			ft_putchar(*format);
-		}
+			temp += ft_putchar(*format);
 		format++;
+		if (temp == -1)
+			return (-1);
+		value += temp;
 	}
-	if (temp == -1)
-		return (-1);
-	value += temp;
 
 	return (value);
 }

@@ -16,5 +16,6 @@
 
 int main()
 {
-    printf("\n%d\n",ft_printf("cxzc%d\n", 5));
+    printf("len1: %d\n",ft_printf("%d\n", 2221));
+    // printf("\nlen2: %d\n",printf("%d", 3213221));
 }
