@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:38:22 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/14 16:07:33 by huozturk         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:56:42 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 int ft_printf(const char *, ...);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
-int ft_putnbr(long  n);
+int ft_putnbr(long  num);
 
 #endif

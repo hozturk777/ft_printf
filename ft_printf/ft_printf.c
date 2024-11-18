@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/14 17:33:02 by huozturk         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:59:32 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		temp = 0;
-		if (*format == '%')
+		if (*format == '%' && *format + 1 != '%')
 			ft_identifier((++format), args, &temp);
 		else
 			temp += ft_putchar(*format);

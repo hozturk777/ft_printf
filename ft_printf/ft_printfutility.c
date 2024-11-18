@@ -21,12 +21,10 @@ int	ft_putstr(char *str)
 	return (len);
 }
 
-int	ft_putnbr(long n)
+int	ft_putnbr(long num)
 {
-	long	num;
 	int		len;
 
-	num = n;
 	len = 0;
 	if (num < 0)
 	{
