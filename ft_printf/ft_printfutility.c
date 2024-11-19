@@ -10,6 +10,7 @@ int	ft_putstr(char *str)
 {
 	int len;
 
+	len = 0;
 	while (*str)
 	{
 		if (ft_putchar(*str) == -1)
