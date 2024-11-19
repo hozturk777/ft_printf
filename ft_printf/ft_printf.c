@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/19 16:11:20 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/19 20:53:36 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int is_valid_format(char c)
+static int is_valid_format(char c)
 {
     return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X');
 }
 
-void ft_identifier(const char *format, va_list args, int *temp)
+static void ft_identifier(const char *format, va_list args, int *temp)
 {
 	 if (*format == '%')
         *temp += ft_putchar('%');
@@ -29,10 +29,9 @@ void ft_identifier(const char *format, va_list args, int *temp)
         *temp += ft_putchar(va_arg(args, int));
     else if (*format == 's')
         *temp += ft_putstr(va_arg(args, char *));
+	else if (*format == 'u')
+        *temp += ft_putnbr(va_arg(args, unsigned int));
 }
-
-
-
 
 int	ft_printf(const char *format, ...)
 {

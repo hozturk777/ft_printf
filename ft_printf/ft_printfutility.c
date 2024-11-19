@@ -24,7 +24,7 @@ int	ft_putstr(char *str)
 
 int	ft_putnbr(long num)
 {
-	int		len;
+	long		len;
 
 	len = 0;
 	if (num < 0)
@@ -45,5 +45,5 @@ int	ft_putnbr(long num)
 			return (-1);
 		len++;
 	}
-	return (len);
+	return ((int)len);
 }

@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:38:40 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/19 16:14:47 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/19 20:54:43 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 int main()
 {
-    printf("len1: %d\n",ft_printf("%d    %  s\n", 'a',"aba"));
-    printf("len2: %d\n",printf("%d    %  s\n", 'a',"aba"));
+    printf("len1: %d\n",ft_printf("%u    %%  s\n", -4294967295,"aba"));
+    printf("len2: %d\n",printf("%u    %%  s\n", -4294967295, "aba"));
 }
