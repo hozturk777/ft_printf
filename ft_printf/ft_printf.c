@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/19 20:53:36 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/19 23:00:22 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,30 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-static int is_valid_format(char c)
-{
-    return (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X');
-}
+// static int is_valid_format(char c)
+// {
+//     return (c == 'd' || c == 'i' || c == 'u' || c == 'X');
+// }
 
 static void ft_identifier(const char *format, va_list args, int *temp)
 {
-	 if (*format == '%')
+	const char	*hex;
+	const char	*dec;
+	
+	hex = "0123456789ABCDEF";
+	dec = "0123456789";
+	if (*format == '%')
         *temp += ft_putchar('%');
     else if ((*format == 'd' || *format == 'i'))
-        *temp += ft_putnbr(va_arg(args, int));
+        *temp += ft_putnbr(va_arg(args, int), *format, dec);
     else if (*format == 'c')
         *temp += ft_putchar(va_arg(args, int));
     else if (*format == 's')
         *temp += ft_putstr(va_arg(args, char *));
 	else if (*format == 'u')
-        *temp += ft_putnbr(va_arg(args, unsigned int));
+        *temp += ft_putnbr(va_arg(args, unsigned int), *format, dec);
+	else if (*format == 'x')
+        *temp += ft_putnbr(va_arg(args, unsigned int), *format, hex);
 }
 
 int	ft_printf(const char *format, ...)
@@ -49,8 +56,8 @@ int	ft_printf(const char *format, ...)
 			format++;
             while (*format == ' ')
             {
-                if(is_valid_format(*(format+1)))
-					temp += ft_putchar(' ');
+                // if(is_valid_format(*(format+1)))
+				// 	temp += ft_putchar(' ');
                 format++;
             }
             ft_identifier(format, args, &temp);
