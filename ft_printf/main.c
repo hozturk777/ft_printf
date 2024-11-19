@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:38:40 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/18 19:00:56 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/19 15:50:54 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 int main()
 {
-    printf("len1: %d\n",ft_printf("% d\n", 2221));
-    // printf("\nlen2: %d\n",printf("% d", 3213221));
+    printf("len1: %d\n",ft_printf("%     c sa   %  d\n", 'a',2221));
+    printf("len2: %d\n",printf("%     c sa   %  d\n", 'a',2221));
 }
