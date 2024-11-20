@@ -11,7 +11,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-$(OBJ) : libftprintf.h
+$(OBJ) : ft_printf.h
 
 clean:
 	rm -rf $(OBJ)

@@ -1,4 +1,4 @@
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <unistd.h>
 #include <stdio.h>
 
@@ -11,6 +11,7 @@ int	ft_putstr(char *str)
 	int len;
 
 	len = 0;
+	
 	while (*str)
 	{
 		if (ft_putchar(*str) == -1)
@@ -34,9 +35,34 @@ int	ft_strlen(const char *str)
 	}
 	return (len);
 }
-static int	ft_putnbrutility(long num, const char checkidentifier, const char *type)
+int	ft_putnbrutility(unsigned long num, const char checkidentifier, const char *type)
 {
 	long	len;
+
+	len = 0;
+	if (num > (unsigned long)(ft_strlen(type)-1) && checkidentifier == 'p')
+	{
+		len += ft_putnbrutility(num/ft_strlen(type), checkidentifier, type);
+		len += ft_putnbrutility(num%ft_strlen(type), checkidentifier, type);
+	}
+	else if (num < 10 && checkidentifier == 'p')
+	{
+		if (ft_putchar(num + '0') == -1)
+			return (-1);
+		len++;
+	}
+	else
+	{
+		if (ft_putchar((num - 10 + ((checkidentifier == 'x' || checkidentifier == 'p') ? 'a' : 'A'))) == -1)
+			return (-1);
+		len++;
+	}
+	return ((int)len);
+}				//	NULL İŞLEMİ YAPILACAK
+
+int	ft_putnbr(long num, const char checkidentifier, const char *type)
+{
+	long		len;
 
 	len = 0;
 	if (num < 0)
@@ -57,16 +83,7 @@ static int	ft_putnbrutility(long num, const char checkidentifier, const char *ty
 		len++;
 	}
 	else
-		if (checkidentifier == 'x')
-				len += ft_putchar((num - 10 + 'a'));
-	return (len);
-}
-
-int	ft_putnbr(long num, const char checkidentifier, const char *type)
-{
-	long		len;
-
-	len = 0;
-	len = ft_putnbrutility(num, checkidentifier, type);
+		if (++len && ft_putchar((num - 10 + ((checkidentifier == 'x' || checkidentifier == 'p') ? 'a' : 'A'))) == -1)
+			return (-1);
 	return ((int)len);
 }

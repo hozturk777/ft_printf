@@ -6,16 +6,17 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:38:40 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/19 23:00:39 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/21 00:31:04 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int main()
 {
-    printf("len1: %d\n",ft_printf("% x   %%  s\n", 15,"aba"));
-    printf("len2: %d\n",printf("% x   %%  s\n", 15, "aba"));
+    int c = 0;
+    printf("len1: %d\n",ft_printf(" %p ", -1));
+    printf("len2: %d\n",printf(" %p ", -1));
 }
