@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:38:40 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/21 00:31:04 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/23 16:34:47 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 int main()
 {
     int c = 0;
-    printf("len1: %d\n",ft_printf(" %p ", -1));
-    printf("len2: %d\n",printf(" %p ", -1));
+    // printf("len1: %d\n",ft_printf(" NULL %s NULL ", NULL));
+    printf("len2: %d\n",printf(" NULL %s NULL ", NULL));
+
+    // NULL Segmentation fault (core dumped)    BU HATA ÇÖZÜLECEK
 }

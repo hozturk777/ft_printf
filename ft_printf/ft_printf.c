@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/21 00:21:08 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/23 16:33:38 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ static int is_valid_format(char c)
 
 static void ft_identifier(const char *format, va_list args, int *temp)
 {
-	const char	*hex;
 	const char	*dec;
 	
-	hex = "0123456789ABCDEF";
 	dec = "0123456789";
 	if (*format == '%')
         *temp += ft_putchar('%');
@@ -37,13 +35,14 @@ static void ft_identifier(const char *format, va_list args, int *temp)
 	else if (*format == 'u')
         *temp += ft_putnbr(va_arg(args, unsigned int), *format, dec);
 	else if (*format == 'x' || *format == 'X' )
-        *temp += ft_putnbr(va_arg(args, unsigned int), *format, hex);
+        *temp += ft_putnbr(va_arg(args, unsigned int), *format, "0123456789ABCDEF");
 	else if (*format == 'p')
 	{
-		if (ft_putstr("0x") == -1)
-			*temp = -1;
-		*temp += 2;
-        *temp += ft_putnbrutility(va_arg(args, unsigned long), *format, hex);
+		unsigned long num = va_arg(args, unsigned long);
+        if (num)
+            *temp +=ft_putstr("0x"), *temp += ft_putnbrutility(num, *format, "0123456789ABCDEF");
+        else
+            *temp += ft_putstr("(nil)");
 	}
 }
 
