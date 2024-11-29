@@ -6,13 +6,19 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/27 14:41:40 by huozturk         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:15:43 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
+
+int	ft_putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
 static int is_valid_format(char c)
 {
@@ -21,28 +27,28 @@ static int is_valid_format(char c)
 
 static void ft_identifier(const char *format, va_list args, int *temp)
 {
-	const char	*dec;
-	
-	dec = "0123456789";
 	if (*format == '%')
-        *temp += ft_putchar('%');
-    else if ((*format == 'd' || *format == 'i'))
-        *temp += ft_putnbr(va_arg(args, int), *format, dec);
-    else if (*format == 'c')
-        *temp += ft_putchar(va_arg(args, int));
-    else if (*format == 's')
-        *temp += ft_putstr(va_arg(args, char *));
+		*temp += ft_putchar('%');
+	else if ((*format == 'd' || *format == 'i'))
+		*temp += ft_putnbr(va_arg(args, int), 0,*format, "0123456789");
+	else if (*format == 'c')
+		*temp += ft_putchar(va_arg(args, int));
+	else if (*format == 's')
+		*temp += ft_putstr(va_arg(args, char *));
 	else if (*format == 'u')
-        *temp += ft_putnbr(va_arg(args, unsigned int), *format, dec);
+		*temp += ft_putnbr(va_arg(args, unsigned int), 0,*format, "0123456789");
 	else if (*format == 'x' || *format == 'X' )
-        *temp += ft_putnbr(va_arg(args, unsigned int), *format, "0123456789ABCDEF");
+		*temp += ft_putnbr(va_arg(args, unsigned int),  0, *format,"0123456789ABCDEF");
 	else if (*format == 'p')
 	{
 		unsigned long num = va_arg(args, unsigned long);
-        if (num)
-            *temp +=ft_putstr("0x"), *temp += ft_putnbrutility(num, *format, "0123456789ABCDEF");
-        else
-            *temp += ft_putstr("(nil)");
+		if (num)
+		{
+			*temp +=ft_putstr("0x");
+			*temp += ft_putnbr(0, num,*format, "0123456789ABCDEF");	
+		}
+		else
+			*temp += ft_putstr("(nil)");
 	}
 	else
 		*temp = -1;
