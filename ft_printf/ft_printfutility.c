@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:28:22 by huozturk          #+#    #+#             */
-/*   Updated: 2024/12/09 17:25:25 by huozturk         ###   ########.fr       */
+/*   Updated: 2024/12/14 16:52:07 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_putstr(char *str)
 	len = 0;
 	if (!str)
 	{
-		ft_putstr("(null)");
+		if (ft_putstr("(null)") == -1)
+			return (-1);
 		return (6);
 	}
 	while (*str)
@@ -60,30 +61,29 @@ static int	ft_puthexdigit(char check, unsigned long hexnum, long decnum)
 		}
 		else if (check == 'p')
 		{
-			if (ft_putchar(hexnum - 10 + 'a') == -1)
+			if (ft_putchar(hexnum % 10 + 'a') == -1)
 				return (-1);
 		}
-		else if (ft_putchar(decnum - 10 + 'a') == -1)
+		else if (ft_putchar(decnum % 10 + 'a') == -1)
 			return (-1);
 	}
-	else if (ft_putchar(decnum - 10 + 'a') == -1)
+	else if (ft_putchar(decnum % 10 + 'a') == -1)
 		return (-1);
 	return (0);
 }
-//4242
 
 int	ft_putnbr(long decnum, unsigned long hexnum, const char check, int type)
 {
-	long		len;
+	int		len;
 
 	len = 0;
-	if (decnum < 0 || hexnum < 0)
+	if (decnum < 0)
 	{
 		if (ft_putchar('-') == -1)
 			return (-1);
 		len += ft_putnbr(-decnum, -hexnum, check, type) + 1;
 	}
-	else if (decnum > (type - 1) || hexnum > (type - 1))
+	else if (decnum > (type - 1) || hexnum > (unsigned)(type - 1))
 	{
 		len += ft_putnbr(decnum / type, hexnum / type, check, type);
 		len += ft_putnbr(decnum % type, hexnum % type, check, type);
@@ -96,5 +96,5 @@ int	ft_putnbr(long decnum, unsigned long hexnum, const char check, int type)
 	}
 	else if (++len && ft_puthexdigit(check, hexnum, decnum) == -1)
 		return (-1);
-	return ((int)len);
+	return (len);
 }

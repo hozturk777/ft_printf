@@ -1,5 +1,5 @@
 NAME = libftprintf.a
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror
 
 SRC = ft_printf.c \
 		ft_printfutility.c \

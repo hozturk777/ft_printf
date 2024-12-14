@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/12/09 17:24:49 by huozturk         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:31:40 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_identifier(const char *format, va_list args, int *temp)
 	if (*format == '%')
 		*temp += ft_putchar('%');
 	else if ((*format == 'd' || *format == 'i'))
-		*temp += ft_putnbr(va_arg(args, int), 0,*format, 10);
+		*temp += ft_putnbr(va_arg(args, int), 0, *format, 10);
 	else if (*format == 'c')
 		*temp += ft_putchar(va_arg(args, int));
 	else if (*format == 's')
@@ -77,7 +77,7 @@ int	ft_printf(const char *format, ...)
 		else
 			temp += ft_putchar(*format);
 		if (format++ && temp == -1)
-			return (-1);
+			return (va_end(args), -1);
 		value += temp;
 	}
 	return (va_end(args), value);
